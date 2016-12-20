@@ -8,10 +8,6 @@ class Search extends React.Component {
     this.addIngredient = this.addIngredient.bind(this);
   }
 
-  // componentDidMount() {
-  //   console.log('>>> Search mounted');
-  // }
-
   fetchRecipes(e) {
     e.preventDefault();
     const queryTerms = this.props.ingredients;
@@ -29,6 +25,7 @@ class Search extends React.Component {
   addIngredient(e) {
     e.preventDefault();
     const ingredient = this.refs.ingredient.value;
+    this.refs.ingredient.value = '';
     this.props.addIngredient(ingredient);
   }
 
@@ -47,7 +44,11 @@ class Search extends React.Component {
         <h2>
           <p>Add your ingredients:</p>
           <form onSubmit={this.addIngredient}>
-            <input ref="ingredient" className="ingredient-input"></input>
+            <input 
+              ref="ingredient" 
+              className="ingredient-input"
+              placeholder="Enter an ingredient">
+            </input>
             <button>Add Ingredient</button>
           </form>
           <button type="submit" onClick={this.fetchRecipes} className="search-submit">Search Recipes</button>
