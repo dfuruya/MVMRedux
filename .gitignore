@@ -21,6 +21,9 @@ coverage
 build/
 dist/
 
+# API Keys
+config.env.js
+
 # temp
 Dockerfile
 # server/db/init.sql

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Main = React.createClass({
+class Main extends React.Component {
   render() {
     return (
       <div>
@@ -9,7 +9,7 @@ const Main = React.createClass({
           <Link to="/">MVM Redux</Link>
         </h1>
         <h2>
-          <Link to="/">Add Ingredients</Link>
+          <Link to="/search">Add Ingredients</Link>
           /
           <Link to="/favs">Your Favorites</Link>
         </h2>
@@ -19,6 +19,6 @@ const Main = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default Main;

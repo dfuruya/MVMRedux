@@ -1,28 +1,38 @@
 const path = require('path');
-const app = require('express')();
+const express = require('express');
 const webpack = require('webpack');
-const webpackFile = process.env.NODE_ENV
-const webpackConfig = require(`./webpack.config.${webpackFile}`);
+const bodyParser = require('body-parser');
 
-const compiler = webpack(webpackConfig);
+const env = process.env.NODE_ENV || 'development';
+console.log(`NODE_ENV is: ${env}`);
+const config = require('./config.env')[env];
+const PORT = config.port;
+const routes = require('./server/routes');
 
-const PORT = process.env.PORT || 8080;
+const db = require('./server/db');
 
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: webpackConfig.output.publicPath, 
-}));
+let app = express();
+app.use(express.static('dist'));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
-app.use(require('webpack-hot-middleware')(compiler));
+if (env === 'development') {
+  const webpackConfig = require(`./webpack.config.dev`);
+  const compiler = webpack(webpackConfig);
+  app.use(require('webpack-hot-middleware')(compiler));
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath, 
+  }));
+}
+
+routes(app);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 app.listen(PORT, (err) => {
-  if (err) {
-    console.error(err);
-    return;
-  }
-  console.log('Listening on port ', PORT);
+  if (err) return console.error(err);
+  console.log('Listening on port', PORT);
 });

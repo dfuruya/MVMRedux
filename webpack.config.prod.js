@@ -16,14 +16,15 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     // specifies public URL of the bundle when referenced in the browser
-    publicPath: '/',
+    publicPath: '/dist/',
   },
   plugins: [
     // ensures consistent build hashes
     new webpack.optimize.OccurenceOrderPlugin(),
+    // for the minified production build
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': "'prod'"
+        NODE_ENV: JSON.stringify('production')
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
