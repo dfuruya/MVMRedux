@@ -26,17 +26,10 @@ export const checkRecipe = recipes => {
   }
 }
 
-export const saveRecipe = recipes => {
+export const saveFavorite = favorites => {
   return {
-    type: 'SAVE_RECIPE',
-    recipes
-  }
-}
-
-export const addFavorite = favorite => {
-  return {
-    type: 'ADD_FAVORITE',
-    favorite
+    type: 'SAVE_FAVORITE',
+    favorites
   }
 }
 

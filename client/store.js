@@ -6,7 +6,7 @@ import rootReducer from './reducers/rootReducer';
 
 const defaultState = {
   // favorite: 'soup',
-  favorites: ['pho', 'chicken pesto'],
+  favorites: [],
   ingredients: [],
   recipes: [],
 };

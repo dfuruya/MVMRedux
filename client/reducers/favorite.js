@@ -1,5 +1,9 @@
 const favorite = (state = {}, action) => {
-  console.log(state, action);
+  switch(action.type) {
+    case 'SAVE_FAVORITE':
+      console.log('>.>.> ', state, action);
+      return state;
+  }
   return state;
 };
 

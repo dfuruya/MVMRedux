@@ -9,7 +9,6 @@ import recipes from './recipes';
 const rootReducer = combineReducers({
   ingredients,
   recipes,
-  // favorite,ff
   favorites, 
   routing: routerReducer 
 });

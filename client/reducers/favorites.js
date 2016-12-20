@@ -1,8 +1,8 @@
-const favorites = (state = {}, action) => {
-  console.log('>> fav reducer activated: ', state, action);
-  switch(action) {
-    case 'ADD_FAVORITE':
-      return Object.assign({}, state, {favorite: 'new favorite!'});
+const favorites = (state = [], action) => {
+  switch(action.type) {
+    case 'SAVE_FAVORITE':
+      console.log('>.>.> SAVE_FAVORITE: ', state, action);
+      return [...state, action.favorites];
   }
   return state;
 };

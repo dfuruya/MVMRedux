@@ -9,38 +9,38 @@ class Favorites extends React.Component {
     this.delFav = this.delFav.bind(this);
   }
 
-  componentDidMount() {
-    console.log('>>>>>>> Favorites mounted');
-    this.fetchFavs();
-  }
+  // componentDidMount() {
+  //   console.log('>>>>>>> Favorites mounted');
+  //   this.fetchFavs();
+  // }
 
-  fetchFavs() {
-    axios.get('/favs')
-    .then((result) => {
-      console.log(result);
-    });
-  }
+  // fetchFavs() {
+  //   axios.get('/favs')
+  //   .then((result) => {
+  //     console.log(result);
+  //   });
+  // }
 
-  addFav() {
-    const favoriteToAdd = {
-      name: 'soup', 
-      calories: 850,
-    };
-    axios.post('/favs', favoriteToAdd)
-    .then((result) => {
-      console.log(result);
-    });    
-  }
+  // addFav() {
+  //   const favoriteToAdd = {
+  //     name: 'soup', 
+  //     calories: 850,
+  //   };
+  //   axios.post('/favs', favoriteToAdd)
+  //   .then((result) => {
+  //     console.log(result);
+  //   });    
+  // }
 
-  delFav() {
-    const favId = {
-      id: '5851cb42fbc10e504421e491',
-    };
-    axios.delete('/favs', favId)
-    .then((result) => {
-      console.log(result);
-    });    
-  }
+  // delFav() {
+  //   const favId = {
+  //     id: '5851cb42fbc10e504421e491',
+  //   };
+  //   axios.delete('/favs', favId)
+  //   .then((result) => {
+  //     console.log(result);
+  //   });    
+  // }
   
   render() {
     return (

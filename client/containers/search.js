@@ -5,13 +5,14 @@ import {
   addIngredient, 
   removeIngredient,
   showRecipes,
-  addRecipe,
+  saveFavorite,
   checkRecipe
 } from '../actions/actionCreators';
 
 const mapStateToProps = state => ({
   ingredients: state.ingredients,
   recipes: state.recipes,
+  favorites: state.favorites,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -24,8 +25,8 @@ const mapDispatchToProps = dispatch => ({
   showRecipes: recipes => {
     dispatch(showRecipes(recipes));
   },
-  addRecipe: recipe => {
-    dispatch(addRecipe(recipe));
+  saveFavorite: favorite => {
+    dispatch(saveFavorite(favorite));
   },
   checkRecipe: recipe => {
     dispatch(checkRecipe(recipe));

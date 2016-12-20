@@ -35,7 +35,12 @@ class Search extends React.Component {
 
   checkRecipe(index) {
     this.props.checkRecipe(index);
+    this.props.saveFavorite(this.props.recipes[index]);
   }
+
+  // addRecipe(index) {
+  //   this.props.saveRecipe(index);
+  // }
 
   render() {
     return (
@@ -66,8 +71,8 @@ class Search extends React.Component {
           {this.props.recipes.map((recipe, i) => 
             <li 
               key={recipe.recipe_id}
-              onClick={this.checkRecipe.bind(this, i)}
-            >{recipe.title}</li>
+              onClick={this.checkRecipe.bind(this, i)}>{recipe.title}
+            </li>
           )}
           </ul>
         </div>
