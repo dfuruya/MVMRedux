@@ -12,6 +12,27 @@ export const removeIngredient = ingredients => {
   }
 }
 
+export const showRecipes = recipes => {
+  return {
+    type: 'SHOW_RECIPES',
+    recipes
+  }
+}
+
+export const checkRecipe = recipes => {
+  return {
+    type: 'CHECK_RECIPE',
+    recipes
+  }
+}
+
+export const saveRecipe = recipes => {
+  return {
+    type: 'SAVE_RECIPE',
+    recipes
+  }
+}
+
 export const addFavorite = favorite => {
   return {
     type: 'ADD_FAVORITE',

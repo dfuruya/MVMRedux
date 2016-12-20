@@ -14,8 +14,17 @@ const router = (
     <Router history={history}>
       <Route path="/" component={main}>
         <IndexRoute component={search}></IndexRoute>
-        <Route path="/favs" component={favorites}></Route>
-        <Route path="/search" component={search}></Route>
+        <Route 
+          path="/favs" 
+          // when entering/leaving a route:
+          // onEnter={(location, replaceWith) => {}}
+          // onLeave={() => {}}
+          component={favorites}>
+        </Route>
+        <Route 
+          path="/search" 
+          component={search}>
+        </Route>
       </Route>
     </Router>
   </Provider>

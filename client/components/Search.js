@@ -8,9 +8,9 @@ class Search extends React.Component {
     this.addIngredient = this.addIngredient.bind(this);
   }
 
-  componentDidMount() {
-    console.log('>>> Search mounted');
-  }
+  // componentDidMount() {
+  //   console.log('>>> Search mounted');
+  // }
 
   fetchRecipes(e) {
     e.preventDefault();
@@ -22,38 +22,55 @@ class Search extends React.Component {
     axios.post('/search', query)
     .then((result) => {
       console.log(result.data.recipes);
+      this.props.showRecipes(result.data.recipes);
     });
   }
 
   addIngredient(e) {
     e.preventDefault();
     const ingredient = this.refs.ingredient.value;
-    console.log('>.>.> addIngredient: ', ingredient);
     this.props.addIngredient(ingredient);
   }
 
-  removeIngredient(i) {
-    console.log('>> removing ingr #', i);
-    this.props.removeIngredient(i);
+  removeIngredient(index) {
+    this.props.removeIngredient(index);
+  }
+
+  checkRecipe(index) {
+    this.props.checkRecipe(index);
   }
 
   render() {
     return (
       <div className="search-main">
+
         <h2>
           <p>Add your ingredients:</p>
           <form onSubmit={this.addIngredient}>
             <input ref="ingredient" className="ingredient-input"></input>
             <button>Add Ingredient</button>
           </form>
-
           <button type="submit" onClick={this.fetchRecipes} className="search-submit">Search Recipes</button>
         </h2>
+
         <ul>
         {this.props.ingredients.map((item, i) =>
-          <li key={i} onClick={this.removeIngredient.bind(this, i)}>{item}</li>
+          <li key={i + item} onClick={this.removeIngredient.bind(this, i)}>{item}</li>
         )}
         </ul>
+
+        <div>
+        {this.props.recipes.length === 0 ? null : 'Search results:'}
+          <ul>
+          {this.props.recipes.map((recipe, i) => 
+            <li 
+              key={recipe.recipe_id}
+              onClick={this.checkRecipe.bind(this, i)}
+            >{recipe.title}</li>
+          )}
+          </ul>
+        </div>
+
       </div>
     );
   }

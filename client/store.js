@@ -5,9 +5,10 @@ import { browserHistory } from 'react-router';
 import rootReducer from './reducers/rootReducer';
 
 const defaultState = {
-  favorite: 'soup',
+  // favorite: 'soup',
   favorites: ['pho', 'chicken pesto'],
-  ingredients: ['herbs'],
+  ingredients: [],
+  recipes: [],
 };
 
 const store = createStore(rootReducer, defaultState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

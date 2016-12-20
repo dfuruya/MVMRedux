@@ -48,7 +48,6 @@ class Favorites extends React.Component {
         <h2>
           <p>Your favorites:</p>
           <input className="filter-favs"></input>
-          <input type="submit"></input>
         </h2>
       </div>
     );

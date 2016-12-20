@@ -1,10 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Search from '../components/Search';
-import { addIngredient, removeIngredient } from '../actions/actionCreators';
+import {
+  addIngredient, 
+  removeIngredient,
+  showRecipes,
+  addRecipe,
+  checkRecipe
+} from '../actions/actionCreators';
 
 const mapStateToProps = state => ({
   ingredients: state.ingredients,
+  recipes: state.recipes,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -13,7 +20,16 @@ const mapDispatchToProps = dispatch => ({
   },
   removeIngredient: ingredient => {
     dispatch(removeIngredient(ingredient));
-  }
+  },
+  showRecipes: recipes => {
+    dispatch(showRecipes(recipes));
+  },
+  addRecipe: recipe => {
+    dispatch(addRecipe(recipe));
+  },
+  checkRecipe: recipe => {
+    dispatch(checkRecipe(recipe));
+  },
 });
 
 export default connect(
