@@ -6,7 +6,8 @@ import {
   removeIngredient,
   showRecipes,
   saveFavorite,
-  checkRecipe
+  checkRecipe,
+  removeFavorite
 } from '../actions/actionCreators';
 
 const mapStateToProps = state => ({
@@ -30,6 +31,9 @@ const mapDispatchToProps = dispatch => ({
   },
   checkRecipe: recipe => {
     dispatch(checkRecipe(recipe));
+  },
+  removeFavorite: favorite => {
+    dispatch(removeFavorite(favorite));
   },
 });
 

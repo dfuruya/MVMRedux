@@ -33,10 +33,10 @@ export const saveFavorite = favorites => {
   }
 }
 
-export const removeFavorite = favorite => {
+export const removeFavorite = favorites => {
   return {
     type: 'REMOVE_FAVORITE',
-    favorite
+    favorites
   }
 }
 

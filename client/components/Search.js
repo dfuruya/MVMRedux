@@ -34,13 +34,16 @@ class Search extends React.Component {
   }
 
   checkRecipe(index) {
-    this.props.checkRecipe(index);
-    this.props.saveFavorite(this.props.recipes[index]);
+    const recipe = this.props.recipes[index];
+    recipe.checked
+      ? this.props.removeFavorite(recipe)
+      : this.props.saveFavorite(recipe);
+    this.addRecipe(index);
   }
 
-  // addRecipe(index) {
-  //   this.props.saveRecipe(index);
-  // }
+  addRecipe(index) {
+    this.props.checkRecipe(index);
+  }
 
   render() {
     return (

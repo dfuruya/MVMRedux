@@ -4,9 +4,9 @@ import axios from 'axios';
 class Favorites extends React.Component {
   constructor() {
     super();
-    this.fetchFavs = this.fetchFavs.bind(this);
-    this.addFav = this.addFav.bind(this);
-    this.delFav = this.delFav.bind(this);
+    // this.fetchFavs = this.fetchFavs.bind(this);
+    // this.addFav = this.addFav.bind(this);
+    // this.delFav = this.delFav.bind(this);
   }
 
   // componentDidMount() {
@@ -48,6 +48,11 @@ class Favorites extends React.Component {
         <h2>
           <p>Your favorites:</p>
           <input className="filter-favs"></input>
+          <ul>
+            {Object.keys(this.props.favorites).map(key => (
+              <li key={key}>{key}: {this.props.favorites[key].title}</li>
+            ))}
+          </ul>
         </h2>
       </div>
     );
