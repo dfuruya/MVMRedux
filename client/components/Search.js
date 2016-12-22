@@ -17,8 +17,16 @@ class Search extends React.Component {
     };
     axios.post('/search', query)
     .then(result => {
-      console.log(result.data.recipes);
-      this.props.showRecipes(result.data.recipes);
+      let recipes = [];
+      console.log('>>>>> fetch results:', result.data);
+      result.data.forEach(recipe => {
+        console.log(recipe.recipe);
+        const recipeBody = recipe.recipe;
+        const recipe_id = recipeBody.uri.slice(-32);
+        const fetchedRecipe = Object.assign({}, { recipe_id }, recipeBody);
+        recipes.push(fetchedRecipe);
+      });
+      this.props.showRecipes(recipes);
     });
   }
 
@@ -78,7 +86,7 @@ class Search extends React.Component {
           {this.props.recipes.map((recipe, i) => 
             <li 
               key={recipe.recipe_id}
-              onClick={this.handleRecipe.bind(this, i)}>{recipe.title}
+              onClick={this.handleRecipe.bind(this, i)}>{recipe.label}
             </li>
           )}
           </ul>

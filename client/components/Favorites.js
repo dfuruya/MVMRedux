@@ -54,12 +54,12 @@ class Favorites extends React.Component {
           </input>
           <ul>
           {favorites
-            .filter(e => e.title.toLowerCase().includes(filterStr.toLowerCase()))
+            .filter(e => e.label.toLowerCase().includes(filterStr.toLowerCase()))
             .map((fav, i) => (
             <li key={fav.recipe_id}>
-              <div onClick={this.delFav.bind(this, i)}>{fav.title}</div>
-              <a href={fav.source_url} target="_blank">
-                <img src={fav.image_url} height="50px"/>
+              <div onClick={this.delFav.bind(this, i)}>{fav.label}</div>
+              <a href={fav.url} target="_blank">
+                <img src={fav.image} height="100px"/>
               </a>
             </li>
           ))}

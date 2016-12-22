@@ -4,16 +4,20 @@ const ObjectID = require('../db').ObjectID;
 // const test = require('assert');
 const axios = require('axios');
 
-const F2F_API_KEY = require('../../config.env')[process.env.NODE_ENV].F2F_API_KEY;
-const recipeQueryURL = `http://food2fork.com/api/search?key=${F2F_API_KEY}&q=`;
+// const F2F_API_KEY = require('../../config.env')[process.env.NODE_ENV].F2F_API_KEY;
+// const recipeQueryURL = `http://food2fork.com/api/search?key=${F2F_API_KEY}&q=`;
+const keys = require('../../config.env')[process.env.NODE_ENV];
+const APP_ID = keys.APP_ID;
+const APP_KEY = keys.APP_KEY;
+const recipeQueryURL = `https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=`;
 
 module.exports = {
-  searchRecipes (req, res, next) {
+  searchRecipes(req, res, next) {
     console.log('>>> searchRecipes req is: ', recipeQueryURL + req.body.q);
     axios.get(recipeQueryURL + req.body.q)
     .then((response) => {
-      console.log('>>> searchRecipes: received response: ', response.data);
-      res.json(response.data);
+      console.log('>>> searchRecipes: received response: ', response.data.hits);
+      res.json(response.data.hits);
     });
     // Connect((db) => {
     //   console.log('>>>>>>>>> searchRecipes');
@@ -27,7 +31,7 @@ module.exports = {
     // });
   },
 
-  saveFav (req, res, next) {
+  saveFav(req, res, next) {
     Connect((db) => {
       console.log('>>>>>>>>> saveFav');
       db.collection('tempCollection', (err, coll) => {
@@ -41,7 +45,7 @@ module.exports = {
     });
   },
 
-  deleteFav (req, res, next) {
+  deleteFav(req, res, next) {
     Connect((db) => {
       console.log('>>>>>>>>> deleteFav');
       db.collection('tempCollection', (err, coll) => {
