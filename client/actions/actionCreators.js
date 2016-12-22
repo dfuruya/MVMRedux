@@ -1,48 +1,20 @@
-export const addIngredient = ingredients => {
-  return {
-    type: 'ADD_INGREDIENT',
-    ingredients
-  }
-}
+export const addIngredient = ingredients => 
+  ({type: 'ADD_INGREDIENT', ingredients});
 
-export const removeIngredient = ingredients => {
-  return {
-    type: 'REMOVE_INGREDIENT',
-    ingredients
-  }
-}
+export const removeIngredient = ingredients => 
+  ({type: 'REMOVE_INGREDIENT', ingredients});
 
-export const showRecipes = recipes => {
-  return {
-    type: 'SHOW_RECIPES',
-    recipes
-  }
-}
+export const showRecipes = recipes => 
+  ({type: 'SHOW_RECIPES', recipes});
 
-export const checkRecipe = recipes => {
-  return {
-    type: 'CHECK_RECIPE',
-    recipes
-  }
-}
+export const saveFavorite = favorites => 
+  ({type: 'SAVE_FAVORITE', favorites});
 
-export const saveFavorite = favorites => {
-  return {
-    type: 'SAVE_FAVORITE',
-    favorites
-  }
-}
+export const removeFavorite = favorites => 
+  ({type: 'REMOVE_FAVORITE', favorites});
 
-export const removeFavorite = favorites => {
-  return {
-    type: 'REMOVE_FAVORITE',
-    favorites
-  }
-}
+export const loadFavorites = favorites => 
+  ({type: 'LOAD_FAVORITES', favorites});
 
-export const loadFavorites = favorites => {
-  return {
-    type: 'LOAD_FAVORITES',
-    favorites
-  }
-}
+export const filterFavs = filterStr => 
+  ({type: 'FILTER_FAVORITES', filterStr});

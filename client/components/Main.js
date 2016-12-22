@@ -9,9 +9,9 @@ class Main extends React.Component {
           <Link to="/">MVM Redux</Link>
         </h1>
         <h2>
-          <Link to="/search">Add Ingredients</Link>
+          <Link to="/search">Search Recipes </Link>
           /
-          <Link to="/favs">Your Favorites</Link>
+          <Link to="/favs"> Your Favorites</Link>
         </h2>
         <div>
           { React.cloneElement(this.props.children, this.props) }

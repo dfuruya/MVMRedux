@@ -6,7 +6,6 @@ import {
   removeIngredient,
   showRecipes,
   saveFavorite,
-  checkRecipe,
   removeFavorite
 } from '../actions/actionCreators';
 
@@ -28,9 +27,6 @@ const mapDispatchToProps = dispatch => ({
   },
   saveFavorite: favorite => {
     dispatch(saveFavorite(favorite));
-  },
-  checkRecipe: recipe => {
-    dispatch(checkRecipe(recipe));
   },
   removeFavorite: favorite => {
     dispatch(removeFavorite(favorite));

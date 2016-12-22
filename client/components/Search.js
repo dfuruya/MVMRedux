@@ -16,7 +16,7 @@ class Search extends React.Component {
       q: queryTerms
     };
     axios.post('/search', query)
-    .then((result) => {
+    .then(result => {
       console.log(result.data.recipes);
       this.props.showRecipes(result.data.recipes);
     });
@@ -33,16 +33,17 @@ class Search extends React.Component {
     this.props.removeIngredient(index);
   }
 
-  checkRecipe(index) {
+  handleRecipe(index) {
     const recipe = this.props.recipes[index];
-    recipe.checked
-      ? this.props.removeFavorite(recipe)
+    let favIndex = -1;
+    this.props.favorites.forEach((fav, i) => {
+      if (fav.recipe_id === recipe.recipe_id) {
+        favIndex = i;
+      }
+    });
+    favIndex > -1
+      ? this.props.removeFavorite(favIndex)
       : this.props.saveFavorite(recipe);
-    this.addRecipe(index);
-  }
-
-  addRecipe(index) {
-    this.props.checkRecipe(index);
   }
 
   render() {
@@ -64,7 +65,10 @@ class Search extends React.Component {
 
         <ul>
         {this.props.ingredients.map((item, i) =>
-          <li key={i + item} onClick={this.removeIngredient.bind(this, i)}>{item}</li>
+          <li 
+            key={i + item} 
+            onClick={this.removeIngredient.bind(this, i)}>{item}
+          </li>
         )}
         </ul>
 
@@ -74,7 +78,7 @@ class Search extends React.Component {
           {this.props.recipes.map((recipe, i) => 
             <li 
               key={recipe.recipe_id}
-              onClick={this.checkRecipe.bind(this, i)}>{recipe.title}
+              onClick={this.handleRecipe.bind(this, i)}>{recipe.title}
             </li>
           )}
           </ul>
