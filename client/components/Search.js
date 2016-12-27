@@ -2,12 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 class Search extends React.Component {
-  constructor() {
-    super();
-    this.fetchRecipes = this.fetchRecipes.bind(this);
-    this.addIngredient = this.addIngredient.bind(this);
-  }
-
   fetchRecipes(e) {
     e.preventDefault();
     const queryTerms = this.props.ingredients;
@@ -60,7 +54,7 @@ class Search extends React.Component {
 
         <h2>
           <p>Add your ingredients:</p>
-          <form onSubmit={this.addIngredient}>
+          <form onSubmit={this.addIngredient.bind(this)}>
             <input 
               ref="ingredient" 
               className="ingredient-input"
@@ -68,14 +62,15 @@ class Search extends React.Component {
             </input>
             <button>Add Ingredient</button>
           </form>
-          <button type="submit" onClick={this.fetchRecipes} className="search-submit">Search Recipes</button>
+          <button type="submit" onClick={this.fetchRecipes.bind(this)} className="search-submit">Search Recipes</button>
         </h2>
 
         <ul>
         {this.props.ingredients.map((item, i) =>
           <li 
             key={i + item} 
-            onClick={this.removeIngredient.bind(this, i)}>{item}
+            onClick={this.removeIngredient.bind(this, i)}>
+            <p>{item}</p>
           </li>
         )}
         </ul>
@@ -86,7 +81,8 @@ class Search extends React.Component {
           {this.props.recipes.map((recipe, i) => 
             <li 
               key={recipe.recipe_id}
-              onClick={this.handleRecipe.bind(this, i)}>{recipe.label}
+              onClick={this.handleRecipe.bind(this, i)}>
+              <p>{recipe.label}</p>
             </li>
           )}
           </ul>

@@ -16,19 +16,19 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addIngredient: ingredient => {
+  addIngredient(ingredient) {
     dispatch(addIngredient(ingredient));
   },
-  removeIngredient: ingredient => {
+  removeIngredient(ingredient) {
     dispatch(removeIngredient(ingredient));
   },
-  showRecipes: recipes => {
+  showRecipes(recipes) {
     dispatch(showRecipes(recipes));
   },
-  saveFavorite: favorite => {
+  saveFavorite(favorite) {
     dispatch(saveFavorite(favorite));
   },
-  removeFavorite: favorite => {
+  removeFavorite(favorite) {
     dispatch(removeFavorite(favorite));
   },
 });
