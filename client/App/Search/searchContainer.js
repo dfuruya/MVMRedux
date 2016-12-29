@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Search from '../components/Search';
+import Search from './Search';
 import {
   addIngredient, 
   removeIngredient,
   showRecipes,
   saveFavorite,
   removeFavorite
-} from '../actions/actionCreators';
+} from 'actions/actionCreators';
 
 const mapStateToProps = state => ({
   ingredients: state.ingredients,

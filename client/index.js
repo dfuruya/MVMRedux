@@ -1,32 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import favorites from './containers/favorites';
-import main from './containers/main';
-import search from './containers/search';
-
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
-import store, { history } from './store';
+import store from './store';
+
+import appRoutes from './App/appRoutes';
+
+const randomNum = Math.floor(Math.random() + 0.5);
 
 const router = (
   <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={main}>
-        <IndexRoute component={search}></IndexRoute>
-        <Route 
-          path="/favs" 
-          // when entering/leaving a route:
-          // onEnter={(location, replaceWith) => {}}
-          // onLeave={() => {}}
-          component={favorites}>
-        </Route>
-        <Route 
-          path="/search" 
-          component={search}>
-        </Route>
-      </Route>
-    </Router>
+    {appRoutes}
   </Provider>
 );
 

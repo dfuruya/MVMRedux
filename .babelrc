@@ -1,6 +1,14 @@
 {
   "presets": [
     "es2015",
-    "react",
+    "react"
+  ],
+  "plugins": [
+    ["module-resolver", {
+      "root": ["./client"],
+      "alias": {
+        "actions": "actions",
+      }
+    }]
   ]
 }

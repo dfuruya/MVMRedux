@@ -34,5 +34,7 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, (err) => {
   if (err) return console.error(err);
-  console.log('Listening on port', PORT);
+  env === 'development'
+  ? console.log(`Open client browser at (cmd + double-click): http://localhost:${PORT}`)
+  : console.log('Listening on port', PORT);
 });

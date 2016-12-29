@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Favorites from '../components/Favorites';
+import Favorites from './Favorites';
 import { 
   removeFavorite,
   loadFavorites, 
   filterFavs,
-} from '../actions/actionCreators';
+} from 'actions/actionCreators';
 
 const mapStateToProps = state => ({
   favorites: state.favorites,

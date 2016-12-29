@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import favorites from './reducers/favorites';
-import ingredients from './reducers/ingredients';
-import recipes from './reducers/recipes';
-import filterStr from './reducers/filterStr';
+import favorites from './reducers/favoritesReducer';
+import filterStr from './reducers/filterStrReducer';
+import ingredients from './reducers/ingredientsReducer';
+import recipes from './reducers/recipesReducer';
 
 const rootReducer = combineReducers({
-  ingredients,
-  recipes,
   favorites, 
   filterStr,
+  ingredients,
+  recipes,
   routing: routerReducer 
 });
 
