@@ -4,6 +4,7 @@ import Search from './Search';
 import {
   addIngredient, 
   removeIngredient,
+  clearIngredient,
   showRecipes,
   saveFavorite,
   removeFavorite
@@ -21,6 +22,9 @@ const mapDispatchToProps = dispatch => ({
   },
   removeIngredient(ingredient) {
     dispatch(removeIngredient(ingredient));
+  },
+  clearIngredient(ingredient) {
+    dispatch(clearIngredient(ingredient));
   },
   showRecipes(recipes) {
     dispatch(showRecipes(recipes));

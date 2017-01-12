@@ -1,4 +1,4 @@
-import { createStore, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import throttle from 'lodash/throttle';
@@ -16,9 +16,10 @@ const store = createStore(
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
+const throttleDelay = 2000;
 // Updating window.localStorage
 store.subscribe(throttle(() => {
   saveState(store.getState());
-}, 1000));
+}, throttleDelay));
 
 export default store;

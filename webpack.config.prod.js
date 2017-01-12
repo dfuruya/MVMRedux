@@ -8,8 +8,9 @@ module.exports = {
   // if string, will load module
   // if array, will load all items, last one is exported
   entry: [
-
     './client/index',
+
+
   ],
   output: {
     // bundle output path & name
@@ -18,6 +19,14 @@ module.exports = {
     // specifies public URL of the bundle when referenced in the browser
     publicPath: '/dist/',
   },
+
+
+
+
+
+
+
+
   plugins: [
     // ensures consistent build hashes
     new webpack.optimize.OccurenceOrderPlugin(),

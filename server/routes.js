@@ -2,9 +2,9 @@ const favController = require('./controllers/favController');
 const searchController = require('./controllers/searchController');
 
 module.exports = (app) => {
-  app.get('/favs', favController.loadFavs);
-  app.post('/favs', favController.saveFav);
-  app.delete('/favs', favController.deleteFav);
+  app.get('/api/favs', favController.loadFavs);
+  app.post('/api/favs', favController.saveFav);
+  app.delete('/api/favs', favController.deleteFav);
 
-  app.post('/search', searchController.searchRecipes);
+  app.post('/api/search', searchController.searchRecipes);
 };

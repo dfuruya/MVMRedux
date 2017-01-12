@@ -7,7 +7,7 @@
     ["module-resolver", {
       "root": ["./client"],
       "alias": {
-        "actions": "actions",
+        "actions": "actions"
       }
     }]
   ]

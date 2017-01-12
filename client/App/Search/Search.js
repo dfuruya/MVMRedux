@@ -9,7 +9,7 @@ class Search extends React.Component {
     const query = {
       q: queryTerms
     };
-    axios.post('/search', query)
+    axios.post('/api/search', query)
     .then(result => {
       let recipes = [];
       console.log('>>>>> fetch results:', result.data);
@@ -35,6 +35,10 @@ class Search extends React.Component {
     this.props.removeIngredient(index);
   }
 
+  clearIngredient() {
+    this.props.clearIngredient();
+  }
+
   handleRecipe(index) {
     const recipe = this.props.recipes[index];
     let favIndex = -1;
@@ -49,24 +53,28 @@ class Search extends React.Component {
   }
 
   render() {
+    const { ingredients, recipes } = this.props;
     return (
       <div className="search-main">
 
         <h2>
           <p>Add your ingredients:</p>
-          <form onSubmit={this.addIngredient.bind(this)}>
-            <input 
-              ref="ingredient" 
-              className="ingredient-input"
-              placeholder="Enter an ingredient">
-            </input>
-            <button>Add Ingredient</button>
-          </form>
+          <div>
+            <form onSubmit={this.addIngredient.bind(this)}>
+              <input 
+                ref="ingredient" 
+                className="ingredient-input"
+                placeholder="Enter an ingredient">
+              </input>
+              <button>Add Ingredient</button>
+            </form>
+            <button type="submit" onClick={this.clearIngredient.bind(this)}>Clear Ingredients</button>
+          </div>
           <button type="submit" onClick={this.fetchRecipes.bind(this)} className="search-submit">Search Recipes</button>
         </h2>
 
         <ul>
-        {this.props.ingredients.map((item, i) =>
+        {ingredients.map((item, i) =>
           <li 
             key={i + item} 
             onClick={this.removeIngredient.bind(this, i)}>
@@ -76,9 +84,9 @@ class Search extends React.Component {
         </ul>
 
         <div>
-        {this.props.recipes.length === 0 ? null : 'Search results:'}
+        {recipes.length === 0 ? null : (<h2>Search results:</h2>)}
           <ul>
-          {this.props.recipes.map((recipe, i) => 
+          {recipes.map((recipe, i) => 
             <li 
               key={recipe.recipe_id}
               onClick={this.handleRecipe.bind(this, i)}>

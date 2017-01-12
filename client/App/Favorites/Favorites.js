@@ -5,8 +5,7 @@ class Favorites extends React.Component {
   constructor() {
     super();
     this.filterFavs = this.filterFavs.bind(this);
-    // this.fetchFavs = this.fetchFavs.bind(this);
-    // this.addFav = this.addFav.bind(this);
+    this.fetchFavs = this.fetchFavs.bind(this);
   }
 
   // componentDidMount() {
@@ -14,23 +13,12 @@ class Favorites extends React.Component {
   //   this.fetchFavs();
   // }
 
-  // fetchFavs() {
-  //   axios.get('/favs')
-  //   .then((result) => {
-  //     console.log(result);
-  //   });
-  // }
-
-  // addFav() {
-  //   const favoriteToAdd = {
-  //     name: 'soup', 
-  //     calories: 850,
-  //   };
-  //   axios.post('/favs', favoriteToAdd)
-  //   .then((result) => {
-  //     console.log(result);
-  //   });    
-  // }
+  fetchFavs() {
+    axios.get('/api/favs')
+    .then((result) => {
+      console.log(result);
+    });
+  }
 
   delFav(index) {
     this.props.delFav(index);

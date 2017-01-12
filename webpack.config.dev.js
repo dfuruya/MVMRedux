@@ -8,8 +8,9 @@ module.exports = {
   // if string, will load module
   // if array, will load all items, last one is exported
   entry: [
-    'webpack-hot-middleware/client',
     './client/index',
+    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+    'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
   ],
   output: {
     // bundle output path & name
@@ -18,14 +19,29 @@ module.exports = {
     // specifies public URL of the bundle when referenced in the browser
     publicPath: '/',
   },
+  devServer: {
+    proxy: {
+      'api/*': {
+        target: 'http://localhost:3000',
+        secure: false,
+      }
+    }
+  },
   plugins: [
     // ensures consistent build hashes
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.DedupePlugin(),
     // handles errors more cleanly
     new webpack.NoErrorsPlugin(),
   ],
+
+
+
+
+
+
+
+
   module: {
     // sets base path for module
     // context: path.join(__dirname, 'client'),
@@ -36,12 +52,7 @@ module.exports = {
         test: /\.js$/,
         include: path.join(__dirname, 'client'),
         exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        // queries for es6 and react files
-        query: {
-          // presets: array of babel plugins
-          presets: ['es2015', 'react'],
-        },
+        loaders: ['react-hot', 'babel-loader'],
       },
       // css
       {

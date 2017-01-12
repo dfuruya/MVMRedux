@@ -19,7 +19,8 @@ const appRoutes = (
       </Route>
       <Route 
         path="/search" 
-        // onEnter={}
+        onEnter={console.log('*** onEnter /search')}
+        onLeave={() => {console.log('*** onLeave /search')}}
         component={searchContainer}>
       </Route>
     </Route>
