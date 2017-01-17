@@ -1,13 +1,13 @@
 const defaultState = {
   favorites: [],
+  filterStr: '',
   ingredients: [],
   recipes: [],
-  filterStr: '',
 };
 
 export const loadState = () => {
   try {
-    let serializedState = window.localStorage.getItem('state');
+    const serializedState = window.localStorage.getItem('state');
     return serializedState !== undefined ? JSON.parse(serializedState) : defaultState;
   } catch(err) {
     console.log('Error loading localStorage: ', err);

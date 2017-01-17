@@ -8,24 +8,16 @@ module.exports = {
   // if string, will load module
   // if array, will load all items, last one is exported
   entry: [
+    // 'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
+    // 'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
     './client/index',
-    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-    'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
   ],
   output: {
     // bundle output path & name
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     // specifies public URL of the bundle when referenced in the browser
-    publicPath: '/',
-  },
-  devServer: {
-    proxy: {
-      'api/*': {
-        target: 'http://localhost:3000',
-        secure: false,
-      }
-    }
+    // publicPath: '/',
   },
   plugins: [
     // ensures consistent build hashes
@@ -33,15 +25,8 @@ module.exports = {
     new webpack.optimize.DedupePlugin(),
     // handles errors more cleanly
     new webpack.NoErrorsPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
   ],
-
-
-
-
-
-
-
-
   module: {
     // sets base path for module
     // context: path.join(__dirname, 'client'),
@@ -61,5 +46,24 @@ module.exports = {
         loader: 'style-loader!css-loader!stylus-loader',
       }
     ]
+  },
+  devServer: {
+    contentBase: './dist',
+    // hot: true,
+    quiet: false,
+    noInfo: false,
+    publicPath: '/',
+    stats: { colors: true },
+    proxy: {
+      '/api/*': {
+        target: {
+          host: 'localhost',
+          protocol: 'http',
+          port: 3000,
+        },
+        changeOrigin: true,
+        secure: false
+      }
+    }
   },
 };

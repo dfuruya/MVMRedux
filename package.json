@@ -5,8 +5,8 @@
   "main": "client/index.js",
   "scripts": {
     "start": "NODE_ENV=development nodemon server.js --watch server",
-    "dev": "NODE_ENV=development nodemon server.js --watch server & webpack-dev-server --config ./webpack.config.dev.js --hot --progress --colors --content-base dist/",
-    "prod": "webpack --config webpack.config.prod.js && NODE_ENV=production npm start",
+    "dev": "webpack-dev-server --config ./webpack.config.dev.js --inline --hot",
+    "prod": "webpack --config webpack.config.prod.js && NODE_ENV=production node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

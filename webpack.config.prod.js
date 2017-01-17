@@ -9,24 +9,14 @@ module.exports = {
   // if array, will load all items, last one is exported
   entry: [
     './client/index',
-
-
   ],
   output: {
     // bundle output path & name
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     // specifies public URL of the bundle when referenced in the browser
-    publicPath: '/dist/',
+    // publicPath: '/',
   },
-
-
-
-
-
-
-
-
   plugins: [
     // ensures consistent build hashes
     new webpack.optimize.OccurenceOrderPlugin(),

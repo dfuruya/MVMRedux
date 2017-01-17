@@ -2,8 +2,6 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const webpackDevServer = require('webpack-dev-server');
-const proxy = require('proxy-middleware');
-const url = require('url');
 const webpack = require('webpack');
 
 const env = process.env.NODE_ENV || 'development';
@@ -19,28 +17,6 @@ app.use(express.static('dist'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-
-if (env === 'development') {
-  const webpackConfig = require('./webpack.config.dev');
-  const compiler = webpack(webpackConfig);
-  app.use('/', proxy(url.parse('http://localhost:8080')));
-  app.use(require('webpack-hot-middleware')(compiler));
-  app.use(require('webpack-dev-middleware')(compiler, {
-    noInfo: true,
-    publicPath: webpackConfig.output.publicPath, 
-  }));
-
-  const server = new webpackDevServer(compiler, {
-    contentBase: __dirname,
-    hot: true,
-    quiet: false,
-    noInfo: false,
-    publicPath: "/",
-    stats: { colors: true }
-  });
-  server.listen(8080);
-}
-
 routes(app);
 
 app.get('*', (req, res) => {
@@ -49,7 +25,5 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, (err) => {
   if (err) return console.error(err);
-  env === 'development'
-  ? console.log(`Open client browser at (cmd + double-click): http://localhost:${PORT}`)
-  : console.log('Listening on port', PORT);
+  console.log(`Open client browser at (cmd + double-click): http://localhost:${env === 'development' ? 8080 : PORT}`)
 });

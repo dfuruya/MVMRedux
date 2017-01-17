@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   filterStr,
   ingredients,
   recipes,
-  routing: routerReducer 
+  routing: routerReducer
 });
 
 export default rootReducer;

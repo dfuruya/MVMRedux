@@ -5,23 +5,10 @@ class Favorites extends React.Component {
   constructor() {
     super();
     this.filterFavs = this.filterFavs.bind(this);
-    this.fetchFavs = this.fetchFavs.bind(this);
-  }
-
-  // componentDidMount() {
-  //   console.log('>>>>>>> Favorites mounted');
-  //   this.fetchFavs();
-  // }
-
-  fetchFavs() {
-    axios.get('/api/favs')
-    .then((result) => {
-      console.log(result);
-    });
   }
 
   delFav(index) {
-    this.props.delFav(index);
+    this.props.removeFavorite(index);
   }
 
   filterFavs(filter) {
