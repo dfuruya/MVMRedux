@@ -50,10 +50,14 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     // hot: true,
+    historyApiFallback: true,
     quiet: false,
     noInfo: false,
     publicPath: '/',
-    stats: { colors: true },
+    stats: { 
+      colors: true,
+      chunks: false
+    },
     proxy: {
       '/api/*': {
         target: {

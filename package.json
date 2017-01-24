@@ -4,9 +4,10 @@
   "description": "MVM redone with Redux",
   "main": "client/index.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon server.js --watch server",
-    "dev": "webpack-dev-server --config ./webpack.config.dev.js --inline --hot",
-    "prod": "webpack --config webpack.config.prod.js && NODE_ENV=production node server.js",
+    "start": "NODE_ENV=development nodemon server.js --watch",
+    "dev": "webpack-dev-server --inline --hot --progress --config ./webpack.config.dev.js",
+    "build": "webpack --config webpack.config.prod.js",
+    "prod": "npm run build && NODE_ENV=production node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

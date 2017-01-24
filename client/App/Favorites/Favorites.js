@@ -1,14 +1,14 @@
 import React from 'react';
-import axios from 'axios';
 
 class Favorites extends React.Component {
   constructor() {
     super();
     this.filterFavs = this.filterFavs.bind(this);
+    this.delFav = this.delFav.bind(this);
   }
 
-  delFav(index) {
-    this.props.removeFavorite(index);
+  delFav(id, index) {
+    this.props.deleteRemoveFavorite(id, index);
   }
 
   filterFavs(filter) {
@@ -32,7 +32,7 @@ class Favorites extends React.Component {
             .filter(e => e.label.toLowerCase().includes(filterStr.toLowerCase()))
             .map((fav, i) => (
             <li key={fav.recipe_id}>
-              <div onClick={this.delFav.bind(this, i)}>{fav.label}</div>
+              <div onClick={ () => this.delFav(fav.recipe_id, i) }>{fav.label}</div>
               <a href={fav.url} target="_blank">
                 <img src={fav.image} height="100px"/>
               </a>

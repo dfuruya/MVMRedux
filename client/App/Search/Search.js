@@ -41,15 +41,17 @@ class Search extends React.Component {
 
   handleRecipe(index) {
     const recipe = this.props.recipes[index];
-    let favIndex = -1;
+    let favIndex = -1,
+        favId = -1;
     this.props.favorites.forEach((fav, i) => {
       if (fav.recipe_id === recipe.recipe_id) {
         favIndex = i;
+        favId = fav.recipe_id;
       }
     });
     favIndex > -1
-      ? this.props.removeFavorite(favIndex)
-      : this.props.saveFavorite(recipe);
+      ? this.props.deleteRemoveFavorite(favId, favIndex)
+      : this.props.saveAddFavorite(recipe);
   }
 
   render() {

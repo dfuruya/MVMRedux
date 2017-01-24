@@ -14,8 +14,8 @@ const db = require('./server/db');
 
 let app = express();
 app.use(express.static('dist'));
-app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 routes(app);
 
@@ -25,5 +25,6 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, (err) => {
   if (err) return console.error(err);
-  console.log(`Open client browser at (cmd + double-click): http://localhost:${env === 'development' ? 8080 : PORT}`)
+  console.log(`Open client browser at (cmd + double-click):
+  http://localhost:${env === 'development' ? 8080 : PORT}`);
 });
