@@ -1,6 +1,7 @@
 const defaultState = {
   favorites: [],
   filterStr: '',
+  ingredient: '',
   ingredients: [],
   recipes: [],
 };

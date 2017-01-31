@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import SearchLayout from './searchLayout';
+import ResultsLayout from './Results/resultsLayout';
 
 class Search extends React.Component {
   fetchRecipes(e) {
@@ -24,22 +26,33 @@ class Search extends React.Component {
     });
   }
 
+  inputIngredient(e) {
+    e.preventDefault();
+    const ingredient = e.target.value;
+    this.props.inputIngredient(ingredient);
+  }
+
   addIngredient(e) {
     e.preventDefault();
-    const ingredient = this.refs.ingredient.value;
-    this.refs.ingredient.value = '';
+    const { ingredient } = this.props;
     this.props.addIngredient(ingredient);
+    this.props.clearInput();
   }
 
   removeIngredient(index) {
     this.props.removeIngredient(index);
   }
 
-  clearIngredient() {
+  clearIngredient(e) {
+    e.preventDefault();
     this.props.clearIngredient();
   }
 
-  handleRecipe(index) {
+  clearResults() {
+    this.props.clearResults();
+  }
+  
+  handleRecipe(event, index) { 
     const recipe = this.props.recipes[index];
     let favIndex = -1,
         favId = -1;
@@ -55,49 +68,23 @@ class Search extends React.Component {
   }
 
   render() {
-    const { ingredients, recipes } = this.props;
+    const { ingredient, ingredients, recipes } = this.props;
     return (
       <div className="search-main">
-
-        <h2>
-          <p>Add your ingredients:</p>
-          <div>
-            <form onSubmit={this.addIngredient.bind(this)}>
-              <input 
-                ref="ingredient" 
-                className="ingredient-input"
-                placeholder="Enter an ingredient">
-              </input>
-              <button>Add Ingredient</button>
-            </form>
-            <button type="submit" onClick={this.clearIngredient.bind(this)}>Clear Ingredients</button>
-          </div>
-          <button type="submit" onClick={this.fetchRecipes.bind(this)} className="search-submit">Search Recipes</button>
-        </h2>
-
-        <ul>
-        {ingredients.map((item, i) =>
-          <li 
-            key={i + item} 
-            onClick={this.removeIngredient.bind(this, i)}>
-            <p>{item}</p>
-          </li>
-        )}
-        </ul>
-
-        <div>
-        {recipes.length === 0 ? null : (<h2>Search results:</h2>)}
-          <ul>
-          {recipes.map((recipe, i) => 
-            <li 
-              key={recipe.recipe_id}
-              onClick={this.handleRecipe.bind(this, i)}>
-              <p>{recipe.label}</p>
-            </li>
-          )}
-          </ul>
-        </div>
-
+        <SearchLayout 
+          inputIngredient={this.inputIngredient.bind(this)}
+          addIngredient={this.addIngredient.bind(this)}
+          fetchRecipes={this.fetchRecipes.bind(this)}
+          removeIngredient={this.removeIngredient.bind(this)}
+          clearIngredient={this.clearIngredient.bind(this)}
+          clearResults={this.clearResults.bind(this)}
+          ingredients={ingredients}
+          ingredient={ingredient}
+        />
+        <ResultsLayout 
+          handleRecipe={this.handleRecipe.bind(this)}
+          recipes={recipes}
+        />
       </div>
     );
   }

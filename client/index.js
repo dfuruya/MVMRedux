@@ -3,10 +3,10 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 import store from './store';
-import appRoutes from './App/appRoutes';
+import routes from './routes';
 
 const router = (
-  <Provider store={store}>{appRoutes}</Provider>
+  <Provider store={store}>{routes}</Provider>
 );
 
 render(router, document.getElementById('root'));

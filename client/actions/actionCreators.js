@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+// Ingredient actions
+export const inputIngredient = ingredient => 
+  ({type: 'INPUT_INGREDIENT', ingredient});
+
+export const clearInput = ingredient => 
+  ({type: 'CLEAR_INPUT', ingredient});
+
 // Ingredients actions
 export const addIngredient = ingredients => 
   ({type: 'ADD_INGREDIENT', ingredients});

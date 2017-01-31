@@ -27,6 +27,7 @@ config.env.js
 # temp
 Dockerfile
 # server/db/init.sql
+data/
 
 node_modules/
 bower_components/

@@ -3,14 +3,18 @@ import { connect } from 'react-redux';
 import Search from './Search';
 import {
   addIngredient, 
+  inputIngredient, 
+  clearInput, 
   removeIngredient,
   clearIngredient,
   showRecipes,
   saveAddFavorite,
   deleteRemoveFavorite,
+  removeFavorite,
 } from 'actions/actionCreators';
 
 const mapStateToProps = state => ({
+  ingredient: state.ingredient,
   ingredients: state.ingredients,
   recipes: state.recipes,
   favorites: state.favorites,
@@ -25,6 +29,12 @@ const mapDispatchToProps = dispatch => ({
   },
   clearIngredient(ingredient) {
     dispatch(clearIngredient(ingredient));
+  },
+  inputIngredient(ingredient) {
+    dispatch(inputIngredient(ingredient));
+  },
+  clearInput(ingredient) {
+    dispatch(clearInput(ingredient));
   },
   showRecipes(recipes) {
     dispatch(showRecipes(recipes));
