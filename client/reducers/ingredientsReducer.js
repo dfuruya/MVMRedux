@@ -7,7 +7,7 @@ const ingredients = (state = [], action) => {
         ...state.slice(0, action.ingredients), 
         ...state.slice(action.ingredients + 1)
       ];
-    case 'CLEAR_INGREDIENT':
+    case 'CLEAR_INGREDIENTS':
       return [];
   }
   return state;

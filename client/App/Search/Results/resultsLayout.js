@@ -1,8 +1,10 @@
 import React from 'react';
 
 const ResultsLayout = props => 
-  <div>
-  {props.recipes.length === 0 ? null : (<h2>Search results:</h2>)}
+  <div className="results-layout">
+    {props.recipes.length === 0 
+      ? null 
+      : <h2>Search results:</h2>}
     <ul>
     {props.recipes.map((recipe, i) => 
       <li 

@@ -24,11 +24,7 @@ dist/
 # API Keys
 config.env.js
 
-# temp
-Dockerfile
-# server/db/init.sql
-data/
-
+# Node, etc
 node_modules/
 bower_components/
 .DS_Store
@@ -36,3 +32,10 @@ bower_components/
 .jshintrc
 .sequelizerc
 .travis.yml
+
+# Docker
+Dockerfile
+## server/db/init.sql
+
+# temp, misc files
+temp/

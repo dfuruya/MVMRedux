@@ -1,27 +1,27 @@
 import axios from 'axios';
 
-// Ingredient actions
+// INPUT actions
 export const inputIngredient = ingredient => 
   ({type: 'INPUT_INGREDIENT', ingredient});
 
 export const clearInput = ingredient => 
   ({type: 'CLEAR_INPUT', ingredient});
 
-// Ingredients actions
+// INGREDIENTS actions
 export const addIngredient = ingredients => 
   ({type: 'ADD_INGREDIENT', ingredients});
 
 export const removeIngredient = ingredients => 
   ({type: 'REMOVE_INGREDIENT', ingredients});
 
-export const clearIngredient = ingredients => 
-  ({type: 'CLEAR_INGREDIENT', ingredients});
+export const clearIngredients = ingredients => 
+  ({type: 'CLEAR_INGREDIENTS', ingredients});
 
-// Recipes actions
+// RECIPES actions
 export const showRecipes = recipes => 
   ({type: 'SHOW_RECIPES', recipes});
 
-// Favorites actions
+// FAVORITES actions
 export const addFavorite = favorites => 
   ({type: 'ADD_FAVORITE', favorites});
 
@@ -34,7 +34,12 @@ export const saveFavorite = favs =>
 export const deleteFavorite = favId => 
   (axios.delete(`/api/favs/${favId}`, {recipe_id: favId}));
 
-// thunks for adding/removing favorites
+// FILTER FAVORITES actions
+export const filterFavs = filterStr => 
+  ({type: 'FILTER_FAVORITES', filterStr});
+
+
+// THUNKS for adding/removing favorites
 export const saveAddFavorite = fav => {
   return dispatch => {
     return saveFavorite(fav)
@@ -48,7 +53,3 @@ export const deleteRemoveFavorite = (favId, favIndex) => {
     .then(result => dispatch(removeFavorite(favIndex)));
   };
 };
-
-// Filter Favorites actions
-export const filterFavs = filterStr => 
-  ({type: 'FILTER_FAVORITES', filterStr});

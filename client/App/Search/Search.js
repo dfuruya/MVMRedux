@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import SearchLayout from './searchLayout';
-import ResultsLayout from './Results/resultsLayout';
+import SearchLayout from './SearchLayout';
+import ResultsLayout from './Results/ResultsLayout';
 
 class Search extends React.Component {
   fetchRecipes(e) {
@@ -27,7 +27,6 @@ class Search extends React.Component {
   }
 
   inputIngredient(e) {
-    e.preventDefault();
     const ingredient = e.target.value;
     this.props.inputIngredient(ingredient);
   }
@@ -39,20 +38,16 @@ class Search extends React.Component {
     this.props.clearInput();
   }
 
-  removeIngredient(index) {
+  removeIngredient(e, index) {
     this.props.removeIngredient(index);
   }
 
-  clearIngredient(e) {
+  clearIngredients(e) {
     e.preventDefault();
-    this.props.clearIngredient();
-  }
-
-  clearResults() {
-    this.props.clearResults();
+    this.props.clearIngredients();
   }
   
-  handleRecipe(event, index) { 
+  handleRecipe(e, index) { 
     const recipe = this.props.recipes[index];
     let favIndex = -1,
         favId = -1;
@@ -76,8 +71,7 @@ class Search extends React.Component {
           addIngredient={this.addIngredient.bind(this)}
           fetchRecipes={this.fetchRecipes.bind(this)}
           removeIngredient={this.removeIngredient.bind(this)}
-          clearIngredient={this.clearIngredient.bind(this)}
-          clearResults={this.clearResults.bind(this)}
+          clearIngredients={this.clearIngredients.bind(this)}
           ingredients={ingredients}
           ingredient={ingredient}
         />
