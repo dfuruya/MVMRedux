@@ -10,6 +10,14 @@ import { loadState, saveState } from './localStorage';
 const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [ thunk ];
 const persistedState = loadState();
+// const persistedState = {
+//   userName: '',
+//   favorites: [],
+//   filterStr: '',
+//   ingredient: '',
+//   ingredients: [],
+//   recipes: [],
+// };
 
 const store = createStore(
   rootReducer, 

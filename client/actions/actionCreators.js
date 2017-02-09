@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+// USER actions
+export const logInUser = user => 
+  ({type: 'LOGIN_USER', user});
+
+export const logOutUser = user => 
+  ({type: 'LOGOUT_USER', user});
+
 // INPUT actions
 export const inputIngredient = ingredient => 
   ({type: 'INPUT_INGREDIENT', ingredient});
@@ -28,11 +35,11 @@ export const addFavorite = favorites =>
 export const removeFavorite = favorites => 
   ({type: 'REMOVE_FAVORITE', favorites});
 
-export const saveFavorite = favs => 
-  (axios.post('/api/favs', favs));
+export const saveFavorite = (favorites, userName) => 
+  (axios.post('/api/favs', { userName, favorites }));
 
-export const deleteFavorite = favId => 
-  (axios.delete(`/api/favs/${favId}`, {recipe_id: favId}));
+export const deleteFavorite = (recipe_id, user) => 
+  (axios.delete(`/api/favs/${user}/${recipe_id}`));
 
 // FILTER FAVORITES actions
 export const filterFavs = filterStr => 
@@ -40,16 +47,16 @@ export const filterFavs = filterStr =>
 
 
 // THUNKS for adding/removing favorites
-export const saveAddFavorite = fav => {
+export const saveAddFavorite = (fav, user) => {
   return dispatch => {
-    return saveFavorite(fav)
+    return saveFavorite(fav, user)
     .then(result => dispatch(addFavorite(fav)));
   };
 };
 
-export const deleteRemoveFavorite = (favId, favIndex) => {
+export const deleteRemoveFavorite = (favId, favIndex, user) => {
   return dispatch => {
-    return deleteFavorite(favId)
+    return deleteFavorite(favId, user)
     .then(result => dispatch(removeFavorite(favIndex)));
   };
 };

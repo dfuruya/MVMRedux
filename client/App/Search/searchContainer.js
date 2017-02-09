@@ -13,6 +13,7 @@ import {
 } from 'actions/actionCreators';
 
 const mapStateToProps = state => ({
+  userName: state.userName,
   ingredient: state.ingredient,
   ingredients: state.ingredients,
   recipes: state.recipes,
@@ -38,11 +39,11 @@ const mapDispatchToProps = dispatch => ({
   showRecipes(recipes) {
     dispatch(showRecipes(recipes));
   },
-  saveAddFavorite(favorite) {
-    dispatch(saveAddFavorite(favorite));
+  saveAddFavorite(favorite, username) {
+    dispatch(saveAddFavorite(favorite, username));
   },
-  deleteRemoveFavorite(id, index) {
-    dispatch(deleteRemoveFavorite(id, index));
+  deleteRemoveFavorite(id, index, username) {
+    dispatch(deleteRemoveFavorite(id, index, username));
   },
 });
 

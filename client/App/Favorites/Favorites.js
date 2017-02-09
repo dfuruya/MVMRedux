@@ -3,7 +3,8 @@ import FavoritesLayout from './FavoritesLayout';
 
 class Favorites extends React.Component {
   deleteRemoveFavorite(id, index) {
-    this.props.deleteRemoveFavorite(id, index);
+    const { userName } = this.props;
+    this.props.deleteRemoveFavorite(id, index, userName);
   }
 
   filterFavs(filter) {

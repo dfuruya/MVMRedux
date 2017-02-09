@@ -1,4 +1,5 @@
 const defaultState = {
+  userName: '',
   favorites: [],
   filterStr: '',
   ingredient: '',

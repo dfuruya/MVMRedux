@@ -17,20 +17,20 @@ const FavoritesLayout = props =>
     </input>
     {props.favorites.length === 0 
       ? <NoItemsLayout 
-      itemName={noFavorites.itemName} 
-      suggestion={noFavorites.suggestion}/>
+        itemName={noFavorites.itemName} 
+        suggestion={noFavorites.suggestion}/>
       : null}
     <ul>
-    {props.favorites
-      .filter(e => e.label.toLowerCase().includes(props.filterStr.toLowerCase()))
-      .map((fav, i) => 
-        <li key={fav.recipe_id}>
-          <a href={fav.url} target="_blank">
-            <img src={fav.image} height="100px"/>
-          </a>
-          <div onClick={() => props.deleteRemoveFavorite(fav.recipe_id, i)}>{fav.label}</div>
-        </li>
-    )}
+      {props.favorites
+        .filter(e => e.label.toLowerCase().includes(props.filterStr.toLowerCase()))
+        .map((fav, i) => 
+          <li key={fav.recipe_id}>
+            <a href={fav.url} target="_blank">
+              <img src={fav.image} height="100px"/>
+            </a>
+            <div onClick={() => props.deleteRemoveFavorite(fav.recipe_id, i)}>{fav.label}</div>
+          </li>
+      )}
     </ul>
   </div>
 

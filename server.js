@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const webpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 
 const env = process.env.NODE_ENV || 'development';
