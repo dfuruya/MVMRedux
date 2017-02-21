@@ -1,5 +1,8 @@
 const defaultState = {
-  userName: '',
+  userName: 'click to login',
+  usernameInput: '',
+  passwordInput: '',
+  isAuthenticated: false,
   favorites: [],
   filterStr: '',
   ingredient: '',
@@ -21,6 +24,7 @@ export const saveState = state => {
   try {
     const serializedState = JSON.stringify(state);
     window.localStorage.setItem('state', serializedState);
+    // window.localStorage.setItem('state', defaultState); // clear localStorage
     console.log('>.> SAVE serializedState:', JSON.parse(serializedState).favorites);
   } catch(err) {
     console.error('Error saving to localStorage: ', err);

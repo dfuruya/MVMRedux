@@ -1,24 +1,49 @@
 import React from 'react';
-import { Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, IndexRedirect } from 'react-router';
 import { history } from 'store';
 
-import Home from './App/Home';
-import favoritesContainer from './App/Favorites/favoritesContainer';
-import searchContainer from './App/Search/searchContainer';
+import HomeContainer from './App/HomeContainer';
+import FavoritesContainer from './App/Favorites/FavoritesContainer';
+import SearchContainer from './App/Search/SearchContainer';
+import LoginContainer from './App/Auth/LoginContainer';
+import SignUpContainer from './App/Auth/SignUpContainer';
 
-const routes = (
-  <Router history={history}>
-    <Route path="/" component={Home}>
-      <IndexRedirect to="/search" />
-      <Route path="search" component={searchContainer} />
-      <Route path="favs"
-        component={favoritesContainer}
-        // when entering/leaving a route:
-        // onEnter={(location, replaceWith) => {}}
-        // onLeave={() => {}}
-      />
-    </Route>
-  </Router>
-);
+const getRoutes = store => {
+  const requireAuth = (nextState, replaceState) => {
+    const state = store.getState();
+    if (!state.isAuthenticated) {
+      console.log('!!!!! user not authenticated');
+      history.push('/login');
+    }
+  };
 
-export default routes;
+  const routes = (
+    <Router history={history}>
+      <Route path="/" component={HomeContainer}>
+        <IndexRoute 
+          component={SearchContainer} 
+          onEnter={requireAuth} 
+        />
+        <Route path="login" component={LoginContainer} />
+        <Route path="signup" component={SignUpContainer} />
+        <Route path="signout" 
+          component={SignUpContainer} 
+          // onEnter={}
+        />
+        <Route path="search" 
+          component={SearchContainer} 
+          onEnter={requireAuth} 
+        />
+        <Route path="favs"
+          component={FavoritesContainer}
+          onEnter={requireAuth} 
+          // onLeave={() => {}}
+        />
+      </Route>
+    </Router>
+  );
+
+  return routes;
+}
+
+export default getRoutes;

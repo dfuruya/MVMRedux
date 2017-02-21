@@ -2,8 +2,7 @@ import React from 'react';
 
 const NoItemsLayout = props => 
   <div className="no-items-layout">
-    <p>You don't have any {props.itemName}!</p>
-    {props.suggestion}
+    <p>No {props.itemName} here. {props.suggestion}</p>
   </div>
 
 export default NoItemsLayout;

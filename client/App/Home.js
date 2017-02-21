@@ -1,15 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
+import NavBarContainer from './NavBar/NavBarContainer';
 
 class Home extends React.Component {
   render() {
+    const { isAuthenticated } = this.props;
     return (
       <div>
-        <h2>
-          <Link to="/search">Search Recipes</Link>
-          {` - `}
-          <Link to="/favs">Your Favorites</Link>
-        </h2>
+        <NavBarContainer /> 
         <div>
           { React.cloneElement(this.props.children, this.props) }
         </div>

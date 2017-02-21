@@ -1,5 +1,4 @@
-// TODO: remove initial state
-const userName = (state = 'shinji', action) => {
+const userName = (state = '', action) => {
   switch(action.type) {
     case 'LOGIN_USER':
       return action.userName;

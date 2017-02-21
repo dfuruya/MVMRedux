@@ -66,7 +66,7 @@ class Search extends React.Component {
   render() {
     const { ingredient, ingredients, recipes } = this.props;
     return (
-      <div className="search-main">
+      <div className="search-result">
         <SearchLayout 
           inputIngredient={this.inputIngredient.bind(this)}
           addIngredient={this.addIngredient.bind(this)}

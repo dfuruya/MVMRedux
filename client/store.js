@@ -22,10 +22,8 @@ const persistedState = loadState();
 const store = createStore(
   rootReducer, 
   persistedState, 
-  compose(
-    devtools(
-      applyMiddleware(...middleware)
-    )
+  devtools(
+    applyMiddleware(...middleware)
   )
 );
 

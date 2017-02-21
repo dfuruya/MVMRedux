@@ -9,7 +9,7 @@ import {
 const mapStateToProps = state => ({
   userName: state.userName,
   favorites: state.favorites,
-  filterStr: state.filterStr
+  filterStr: state.filterStr,
 });
 
 const mapDispatchToProps = dispatch => ({

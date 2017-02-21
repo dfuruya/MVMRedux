@@ -14,14 +14,12 @@ class Favorites extends React.Component {
   render() {
     const { filterStr, favorites } = this.props;
     return (
-      <div className="favorites-main">
-        <FavoritesLayout 
-          filterFavs={this.filterFavs.bind(this)}
-          deleteRemoveFavorite={this.deleteRemoveFavorite.bind(this)}
-          filterStr={filterStr}
-          favorites={favorites}
-        />
-      </div>
+      <FavoritesLayout 
+        filterFavs={this.filterFavs.bind(this)}
+        deleteRemoveFavorite={this.deleteRemoveFavorite.bind(this)}
+        filterStr={filterStr}
+        favorites={favorites}
+      />
     );
   }
 }

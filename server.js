@@ -13,8 +13,8 @@ const db = require('./server/db');
 
 let app = express();
 app.use(express.static('dist'));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 routes(app);
 

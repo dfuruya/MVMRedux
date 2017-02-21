@@ -1,4 +1,10 @@
 import React from 'react';
+import NoItemsLayout from 'Global/NoItemsLayout';
+
+const noIngredients = {
+  itemName: 'ingredients',
+  suggestion: `Go add some!`,
+};
 
 const SearchLayout = props => 
   <div className="search-layout">
@@ -16,15 +22,20 @@ const SearchLayout = props =>
 
     <button onClick={e => props.fetchRecipes(e)}>Search Recipes</button>
 
-    <ul>
-    {props.ingredients.map((item, i) =>
-      <li 
-        key={i + item} 
-        onClick={e => props.removeIngredient(e, i)}>
-        <p>{item}</p>
-      </li>
-    )}
-    </ul>
+    {props.ingredients.length === 0
+      ? <NoItemsLayout 
+          itemName={noIngredients.itemName}
+          suggestion={noIngredients.suggestion} />
+      : <ul>
+        {props.ingredients.map((item, i) =>
+          <li 
+            key={i + item} 
+            onClick={e => props.removeIngredient(e, i)}>
+            <p>{item}</p>
+          </li>
+        )}
+        </ul>
+    }
   </div>
 
 export default SearchLayout;
