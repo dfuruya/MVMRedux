@@ -6,14 +6,23 @@ module.exports = {
   saveUser (req, res, next) {
     Connect(db => {
       db.createCollection(USERS_COLLECTION, (err, coll) => {
-        console.log('<<<<<< saving user:', req.body.usernameInput);
-        coll.save({
-          userName: req.body.usernameInput,
-          passWord: req.body.passwordInput,
-        })
+        const userName = req.body.usernameInput;
+        console.log('<<<<<< saving user:', userName);
+        coll.findOne({ userName })
         .then(result => {
-          const jwToken = 'testtoken';
-          res.json({ jwToken });
+          if (result) {
+            console.log('Username already exists!');
+            res.status(404).end();
+          }
+          coll.save({
+            userName,
+            passWord: req.body.passwordInput,
+          })
+          .then(result => {
+            // TODO: fix hard-coded jwToken
+            const jwToken = 'save-token';
+            res.json({ userName, jwToken });
+          });
         });
       });
     });
@@ -27,7 +36,8 @@ module.exports = {
         coll.findOne({ userName })
         .then(result => {
           if (!result) {
-            res.status(404).end('Username does not exist!');
+            console.log('Username does not exist!');
+            res.status(404).end();
           }
           console.log('fetchUser result:', result);
           coll.findOne({
@@ -37,9 +47,12 @@ module.exports = {
           .then(result => {
             if (!result) {
               console.log('The password you entered does not match our records!');
-              res.status(404).end('The password you entered does not match our records!');
+              res.status(404).end();
             }
-            res.json(userName);
+            const { userName, favorites } = result;
+            // TODO: fix hard-coded jwToken
+            const jwToken = 'fetch-token';
+            res.json({ userName, favorites, jwToken });
           });
         });
       });

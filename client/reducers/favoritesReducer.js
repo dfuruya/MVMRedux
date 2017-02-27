@@ -7,6 +7,10 @@ const favorites = (state = [], action) => {
         ...state.slice(0, action.favorites), 
         ...state.slice(action.favorites + 1)
       ];
+    case 'LOGIN_FAVORITES':
+      return action.favorites;
+    case 'LOGOUT_FAVORITES':
+      return [];
   }
   return state;
 };

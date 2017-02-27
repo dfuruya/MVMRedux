@@ -12,7 +12,6 @@ const getRoutes = store => {
   const requireAuth = (nextState, replaceState) => {
     const state = store.getState();
     if (!state.isAuthenticated) {
-      console.log('!!!!! user not authenticated');
       history.push('/login');
     }
   };

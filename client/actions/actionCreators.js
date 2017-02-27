@@ -9,6 +9,12 @@ export const logInUser = userName =>
 export const logOutUser = userName => 
   ({type: 'LOGOUT_USER', userName});
 
+export const logInFavorites = favorites => 
+  ({type: 'LOGIN_FAVORITES', favorites});
+
+export const logOutFavorites = favorites => 
+  ({type: 'LOGOUT_FAVORITES', favorites});
+
 export const loginAttempt = loginData => 
   (axios.post('/api/login', loginData));
 
@@ -18,14 +24,16 @@ export const loginUserAuth = loginData => {
     .then(res => {
       console.log('loginUserAuth res:', res);
       if (res.status === 404) {
-        console.log('%%% user already exists!');
+        console.log('%%% Incorrect user and/or pass!');
       } else {
-        const token = 'some-jwToken';
-        console.log(`&&& token value: ${token}`);
-        localStorage.setItem('jwToken', token);
+        const token = res.data.jwToken;
+        const { userName, favorites, jwToken } = res.data;
+        console.log(`&&& token value: ${jwToken}`);
+        localStorage.setItem('jwToken', jwToken);
         setAuthToken(token);
-        dispatch(logInUser(loginData.usernameInput));
         dispatch(authUser());
+        dispatch(logInUser(userName));
+        dispatch(logInFavorites(favorites));
         history.push('/');
       }
     });
@@ -45,12 +53,13 @@ export const signupUserAuth = loginData => {
   return dispatch => {
     return signupUser(loginData)
     .then(res => {
-      const token = res.jwToken;
-      console.log(`&&& res value: ${token}`);
-      localStorage.setItem('jwToken', token);
-      setAuthToken(token);
-      dispatch(logInUser(loginData.usernameInput));
+      const { userName, favorites, jwToken } = res.data;
+      console.log(`&&& token value: ${jwToken}`);
+      localStorage.setItem('jwToken', jwToken);
+      setAuthToken(jwToken);
+      dispatch(logInUser(userName));
       dispatch(authUser());
+      dispatch(logInFavorites(favorites || []));
       history.push('/');
     });
   };

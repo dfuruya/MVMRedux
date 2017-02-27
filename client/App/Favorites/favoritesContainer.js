@@ -7,8 +7,8 @@ import {
 } from 'actions/actionCreators';
 
 const mapStateToProps = state => ({
-  userName: state.userName,
-  favorites: state.favorites,
+  userName: state.user.userName,
+  favorites: state.user.favorites,
   filterStr: state.filterStr,
 });
 

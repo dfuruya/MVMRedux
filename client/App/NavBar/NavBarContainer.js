@@ -4,18 +4,23 @@ import NavBar from './NavBar';
 import { 
   deAuthUser,
   logOutUser,
+  logOutFavorites,
 } from 'actions/actionCreators';
 
 const mapStateToProps = state => ({
+  // userName: state.user.userName,
   isAuthenticated: state.isAuthenticated,
 });
 
 const mapDispatchToProps = dispatch => ({
-  deAuthUser(user) {
-    dispatch(deAuthUser(user));
+  deAuthUser() {
+    dispatch(deAuthUser());
   },
-  logOutUser(user) {
-    dispatch(logOutUser(user));
+  logOutUser() {
+    dispatch(logOutUser());
+  },
+  logOutFavorites() {
+    dispatch(logOutFavorites());
   },
 });
 
